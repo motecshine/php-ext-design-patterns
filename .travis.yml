@@ -1,0 +1,22 @@
+language: php 
+
+php:
+  - 7.0
+
+notifications:
+  email:
+    recipients:
+      - shinemotec@gmail.com
+    on_success: always
+    on_failure: always
+
+env:
+  - REPORT_EXIT_STATUS=1 NO_INTERACTION=1
+
+#Compile
+before_script:
+    - ./travis/compile.sh
+
+# Run PHPs run-tests.php 
+script:
+    - ./travis/run-test.sh
