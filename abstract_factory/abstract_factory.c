@@ -3,7 +3,7 @@
 #endif
 
 #include "php.h"
-#include "php.ini"
+#include "php_ini.h"
 
 /* include global headers*/
 #include "php_design_patterns.h"
