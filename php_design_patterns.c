@@ -25,7 +25,7 @@
 #include "php.h"
 #include "php_ini.h"
 #include "ext/standard/info.h"
-#include "php_php_design_patterns.h"
+#include "php_design_patterns.h"
 
 
 /* {{{ PHP_MINIT_FUNCTION

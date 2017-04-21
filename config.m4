@@ -59,5 +59,9 @@ if test "$PHP_PHP_DESIGN_PATTERNS" != "no"; then
   dnl
   dnl PHP_SUBST(PHP_DESIGN_PATTERNS_SHARED_LIBADD)
 
-  PHP_NEW_EXTENSION(php_design_patterns, php_design_patterns.c, $ext_shared,, -DZEND_ENABLE_STATIC_TSRMLS_CACHE=1)
+  PHP_NEW_EXTENSION(
+  php_design_patterns,
+  php_design_patterns.c,
+  $ext_shared,
+  )
 fi
