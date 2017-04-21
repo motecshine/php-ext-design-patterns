@@ -1,0 +1,13 @@
+// $Id$
+// vim:ft=javascript
+
+// If your extension references something external, use ARG_WITH
+// ARG_WITH("php_design_patterns", "for php_design_patterns support", "no");
+
+// Otherwise, use ARG_ENABLE
+// ARG_ENABLE("php_design_patterns", "enable php_design_patterns support", "no");
+
+if (PHP_PHP_DESIGN_PATTERNS != "no") {
+	EXTENSION("php_design_patterns", "php_design_patterns.c", PHP_EXTNAME_SHARED, "/DZEND_ENABLE_STATIC_TSRMLS_CACHE=1");
+}
+
