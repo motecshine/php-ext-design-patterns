@@ -3,10 +3,6 @@
 #endif
 
 #include "php.h"
-<<<<<<< HEAD
-=======
-#include "php_ini.h"
->>>>>>> 81cfa56efaa7d57f0d48b0a75a2906fd6759a448
 
 /* include global headers*/
 #include "php_design_patterns.h"
@@ -17,6 +13,7 @@ PHP_METHOD(abstract_factory, CreateButton)
 {
         printf("hello\n");
 }
+
 zend_function_entry abstract_factory_methods[] = {
     PHP_ME(abstract_factory, CreateButton, NULL, ZEND_ACC_PUBLIC)
     {NULL, NULL, NULL}
