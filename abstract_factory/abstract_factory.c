@@ -21,7 +21,7 @@ PHP_DESIGN_STARTUP_FUNCTION(abstract_factory)
 {
     zend_class_entry abstract_factory_container_ce;
     INIT_CLASS_ENTRY(abstract_factory_container_ce, "PHPDesign\\AbstractFactory", abstract_factory_methods);
-    abstract_factory_ce  = zend_register_internal_class(&abstract_factory_container_ce);
+    abstract_factory_ce  = zend_register_internal_interface(&abstract_factory_container_ce);
     abstract_factory_ce->ce_flags |= ZEND_ACC_INTERFACE;
     return SUCCESS;
 }
