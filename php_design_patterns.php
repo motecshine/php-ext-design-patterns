@@ -5,6 +5,9 @@ if(!extension_loaded('php_design_patterns')) {
 	dl('php_design_patterns.' . PHP_SHLIB_SUFFIX);
 }
 use PHPDesign\MacFactory;
+use PHPDesign\WinFactory;
 $macObj = new MacFactory();
 var_dump($macObj->CreateButton());
+$winObj = new WinFactory();
+var_dump($winObj->CreateButton());
 ?>

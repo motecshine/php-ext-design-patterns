@@ -109,7 +109,7 @@ zend_module_entry php_design_patterns_module_entry = {
 	PHP_RINIT(php_design_patterns),		/* Replace with NULL if there's nothing to do at request start */
 	PHP_RSHUTDOWN(php_design_patterns),	/* Replace with NULL if there's nothing to do at request end */
 	PHP_MINFO(php_design_patterns),
-	PHP_PHP_DESIGN_PATTERNS_VERSION,
+	PHP_DESIGN_PATTERNS_VERSION,
 	STANDARD_MODULE_PROPERTIES
 };
 /* }}} */
