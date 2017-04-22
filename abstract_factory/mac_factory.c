@@ -27,15 +27,15 @@ static zend_function_entry mac_factory_methods[] = {
 
 PHP_DESIGN_STARTUP_FUNCTION(mac_factory)
 {
-    zend_string *win_abstract_factory_interface_name;
-    zend_string *win_abstract_factory_interface_name_tolower;
+    zend_string *abstract_factory_interface_name;
+    zend_string *abstract_factory_interface_name_tolower;
     zend_class_entry mac_factory_container_ce;
-    win_abstract_factory_interface_name = strpprintf(0, "PHPDesign\\AbstractFactory");
-    win_abstract_factory_interface_name_tolower = zend_string_tolower(win_abstract_factory_interface_name);
+    abstract_factory_interface_name = strpprintf(0, "PHPDesign\\AbstractFactory");
+    abstract_factory_interface_name_tolower = zend_string_tolower(abstract_factory_interface_name);
     INIT_CLASS_ENTRY(mac_factory_container_ce, "PHPDesign\\MacFactory", mac_factory_methods);
     mac_factory_ce = zend_register_internal_class(&mac_factory_container_ce TSRMLS_CC);
-    zend_class_implements(mac_factory_ce TSRMLS_CC, 1, zend_hash_find_ptr(EG(class_table), win_abstract_factory_interface_name_tolower));
-    zend_string_release(win_abstract_factory_interface_name);
-    zend_string_release(win_abstract_factory_interface_name_tolower);
+    zend_class_implements(mac_factory_ce TSRMLS_CC, 1, zend_hash_find_ptr(EG(class_table), abstract_factory_interface_name_tolower));
+    zend_string_release(abstract_factory_interface_name);
+    zend_string_release(abstract_factory_interface_name_tolower);
     return SUCCESS;
 }
