@@ -7,7 +7,7 @@ if(!extension_loaded('php_design_patterns')) {
 use PHPDesign\MacFactory;
 use PHPDesign\WinFactory;
 $macObj = new MacFactory();
-var_dump($macObj->CreateButton());
+$macObj->CreateButton();
 $winObj = new WinFactory();
-var_dump($winObj->CreateButton());
+$winObj->CreateButton();
 ?>
