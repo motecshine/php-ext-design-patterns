@@ -61,7 +61,11 @@ if test "$PHP_PHP_DESIGN_PATTERNS" != "no"; then
 
   PHP_NEW_EXTENSION(
   php_design_patterns,
+<<<<<<< HEAD
   abstract_factory/abstract_factory.c   \
+=======
+  abstract_factory/abstract_factory.c    \
+>>>>>>> 81cfa56efaa7d57f0d48b0a75a2906fd6759a448
   php_design_patterns.c,
   $ext_shared,
   )
