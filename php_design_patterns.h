@@ -47,7 +47,8 @@ ZEND_BEGIN_MODULE_GLOBALS(php_design_patterns)
 	char *global_string;
 ZEND_END_MODULE_GLOBALS(php_design_patterns)
 */
-
+#define PHP_DESIGN_STARTUP(module)               ZEND_MODULE_STARTUP_N(php_design_patterns_##module)(INIT_FUNC_ARGS_PASSTHRU)
+#define PHP_DESIGN_STARTUP_FUNCTION(module)      ZEND_MINIT_FUNCTION(php_design_patterns_##module)
 /* Always refer to the globals in your function as PHP_DESIGN_PATTERNS_G(variable).
    You are encouraged to rename these macros something shorter, see
    examples in any other php module directory.
@@ -55,9 +56,7 @@ ZEND_END_MODULE_GLOBALS(php_design_patterns)
 #define PHP_DESIGN_PATTERNS_G(v) ZEND_MODULE_GLOBALS_ACCESSOR(php_design_patterns, v)
 
 #if defined(ZTS) && defined(COMPILE_DL_PHP_DESIGN_PATTERNS)
-ZEND_TSRMLS_CACHE_EXTERN()
 #endif
-
 #endif	/* PHP_PHP_DESIGN_PATTERNS_H */
 
 

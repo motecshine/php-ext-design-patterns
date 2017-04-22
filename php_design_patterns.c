@@ -35,6 +35,7 @@ PHP_MINIT_FUNCTION(php_design_patterns)
 	/* If you have INI entries, uncomment these lines
 	REGISTER_INI_ENTRIES();
 	*/
+	PHP_DESIGN_STARTUP(abstract_factory);
 	return SUCCESS;
 }
 /* }}} */
@@ -84,6 +85,7 @@ PHP_MINFO_FUNCTION(php_design_patterns)
 	*/
 }
 /* }}} */
+
 
 /* {{{ php_design_patterns_functions[]
  *
