@@ -7,13 +7,9 @@
 /* include global headers*/
 #include "php_design_patterns.h"
 #include "abstract_factory/abstract_factory.h"
-
-PHP_METHOD(abstract_factory, CreateButton){}
-PHP_METHOD(abstract_factory, CreateBorder){}
-
 static zend_function_entry abstract_factory_methods[] = {
-    PHP_ME(abstract_factory, CreateButton, NULL, ZEND_ACC_PUBLIC|ZEND_ACC_INTERFACE)
-    PHP_ME(abstract_factory, CreateBorder, NULL, ZEND_ACC_PUBLIC|ZEND_ACC_INTERFACE)
+    PHP_ABSTRACT_ME(abstract_factory, CreateButton, NULL)
+    PHP_ABSTRACT_ME(abstract_factory, CreateBorder, NULL)
     PHP_FE_END
 };
 
