@@ -36,6 +36,8 @@ PHP_MINIT_FUNCTION(php_design_patterns)
 	REGISTER_INI_ENTRIES();
 	*/
 	PHP_DESIGN_STARTUP(abstract_factory);
+	PHP_DESIGN_STARTUP(win_factory);
+	PHP_DESIGN_STARTUP(mac_factory);
 	return SUCCESS;
 }
 /* }}} */

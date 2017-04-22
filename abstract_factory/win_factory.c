@@ -8,3 +8,31 @@
 #include "php_design_patterns.h"
 #include "abstract_factory/abstract_factory.h"
 
+zend_class_entry *win_factory_ce;
+
+PHP_METHOD(win_factory, CreateButton)
+{
+     php_printf("WINFactory: CreateButton\n");
+}
+
+PHP_METHOD(win_factory, CreateBorder)
+{
+    php_printf("WINFactory: CreateBorder\n");
+}
+
+zend_function_entry win_factory_methods[] = {
+    PHP_ME(win_factory, CreateBorder, NULL, ZEND_ACC_PUBLIC)
+    PHP_ME(win_factory, CreateButton, NULL, ZEND_ACC_PUBLIC)
+    {NULL, NULL, NULL}
+};
+
+PHP_DESIGN_STARTUP_FUNCTION(win_factory)
+{
+    zend_string *abstract_factory_interface_name;
+    abstract_factory_interface_name = strpprintf(0, "PHPDesign\\AbstractFactory");
+    zend_class_entry win_factory_container_ce;
+    INIT_CLASS_ENTRY(win_factory_container_ce, "PHPDesign\\WinFactory", win_factory_ce);
+    win_factory_ce = zend_register_internal_class(&win_factory_container_ce TSRMLS_CC);
+    zend_class_implements(win_factory_ce TSRMLS_CC, 1, zend_hash_find_ptr(EG(class_table), zend_string_tolower(abstract_factory_interface_name)));
+    zend_string_release(abstract_factory_interface_name);
+}
