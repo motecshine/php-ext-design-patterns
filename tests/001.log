@@ -2,7 +2,7 @@
 ---- EXPECTED OUTPUT
 php_design_patterns extension is available
 ---- ACTUAL OUTPUT
-Segmentation fault (core dumped)
+Segmentation fault
 
 Termsig=11
 ---- FAILED
