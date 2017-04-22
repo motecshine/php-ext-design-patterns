@@ -4,7 +4,13 @@ Check for php_design_patterns presence
 <?php if (!extension_loaded("php_design_patterns")) print "skip"; ?>
 --FILE--
 <?php 
-echo "php_design_patterns extension is available";
+use PHPDesign\MacFactory;
+use PHPDesign\WinFactory;
+$macObj = new MacFactory();
+$macObj->CreateButton();
+$winObj = new WinFactory();
+$winObj->CreateButton();
 ?>
 --EXPECT--
-php_design_patterns extension is available
+MacFactory: CreateButton
+WINFactory: CreateButton
