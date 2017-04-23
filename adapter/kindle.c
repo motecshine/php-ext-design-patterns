@@ -26,9 +26,9 @@ PHP_METHOD(kindle, getPage)
 }
 
 static zend_function_entry kindle_methods[] = {
-    PHP_ME(kindle, pressNext, NULL, ZEND_ACC_PUBLIC);
-    PHP_ME(kindle, unlock,    NULL, ZEND_ACC_PUBLIC);
-    PHP_ME(kindle, getPage,   NULL, ZEND_ACC_PUBLIC);
+    PHP_ME(kindle, pressNext, NULL, ZEND_ACC_PUBLIC)
+    PHP_ME(kindle, unlock,    NULL, ZEND_ACC_PUBLIC)
+    PHP_ME(kindle, getPage,   NULL, ZEND_ACC_PUBLIC)
     PHP_FE_END
 };
 
@@ -42,7 +42,7 @@ PHP_DESIGN_STARTUP_FUNCTION(kindle)
     INIT_CLASS_ENTRY(kindle_container_ce, "PHPDesign\\Kindle", kindle_methods);
     kindle_ce = zend_register_internal_class(&kindle_container_ce TSRMLS_CC);
 
-    if ((ebook_interface_ce = zend_hash_find_ptr(CG(class_table), ebook_interface_name)) == NULL) {
+    if ((ebook_interface_ce = zend_hash_find_ptr(CG(class_table), zend_string_tolower(ebook_interface_name))) == NULL) {
         php_error_docref(NULL TSRMLS_CC, E_ERROR, "Can note implement ebook interface");
         return FAILURE;
     }

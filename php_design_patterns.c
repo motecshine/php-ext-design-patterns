@@ -38,6 +38,11 @@ PHP_MINIT_FUNCTION(php_design_patterns)
 	PHP_DESIGN_STARTUP(abstract_factory);
 	PHP_DESIGN_STARTUP(win_factory);
 	PHP_DESIGN_STARTUP(mac_factory);
+	PHP_DESIGN_STARTUP(book_interface);
+	PHP_DESIGN_STARTUP(book);
+	PHP_DESIGN_STARTUP(ebook_interface);
+	PHP_DESIGN_STARTUP(ebook_adapter);
+	PHP_DESIGN_STARTUP(kindle);
 	return SUCCESS;
 }
 /* }}} */

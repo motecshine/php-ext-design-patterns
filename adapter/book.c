@@ -41,7 +41,7 @@ PHP_DESIGN_STARTUP_FUNCTION(book)
     INIT_CLASS_ENTRY(book_container_ce, "PHPDesign\\Book", book_methods);
     book_ce = zend_register_internal_class(&book_container_ce TSRMLS_CC);
 
-    if ((book_interface_ce = zend_hash_find_ptr(CG(class_table), book_interface_name)) ==  NULL) {
+    if ((book_interface_ce = zend_hash_find_ptr(CG(class_table), zend_string_tolower(book_interface_name))) ==  NULL) {
         php_error_docref(NULL TSRMLS_CC, E_ERROR, "Can not implement book interface");
         return FAILURE;
     }

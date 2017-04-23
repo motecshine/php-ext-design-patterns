@@ -33,7 +33,7 @@ PHP_DESIGN_STARTUP_FUNCTION(win_factory)
     abstract_factory_interface_name = strpprintf(0, "PHPDesign\\AbstractFactory");
     INIT_CLASS_ENTRY(win_factory_container_ce, "PHPDesign\\WinFactory", win_factory_methods);
     win_factory_ce = zend_register_internal_class(&win_factory_container_ce TSRMLS_CC);
-    if ((abstract_factory_ce = zend_hash_find_ptr(CG(class_table), abstract_factory_interface_name)) != NULL) {
+    if ((abstract_factory_ce = zend_hash_find_ptr(CG(class_table), zend_string_tolower(abstract_factory_interface_name))) != NULL) {
         zend_class_implements(win_factory_ce TSRMLS_CC, 1, abstract_factory_ce);
     }
     zend_string_release(abstract_factory_interface_name);

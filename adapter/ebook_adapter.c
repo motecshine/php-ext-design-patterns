@@ -44,10 +44,10 @@ PHP_DESIGN_STARTUP_FUNCTION(ebook_adapter)
 
     book_interface_name = strpprintf(0, "PHPDesign\\BookInterface");
 
-    INIT_CLASS_ENTRY(ebook_adapter_container_ce, "PHPDesign\\EBookAdapter", ebook_interface_methods);
+    INIT_CLASS_ENTRY(ebook_adapter_container_ce, "PHPDesign\\EBookAdapter", ebook_adapter_methods);
     ebook_adapter_ce = zend_register_internal_class(&ebook_adapter_container_ce TSRMLS_CC);
 
-    if ((book_interface_ce = zend_hash_find_ptr(CG(class_table), book_interface_name)) == NULL) {
+    if ((book_interface_ce = zend_hash_find_ptr(CG(class_table), zend_string_tolower(book_interface_name))) == NULL) {
         php_error_docref(NULL TSRMLS_CC, E_ERROR, "Can not implement book_interface");
         return FAILURE;
     }

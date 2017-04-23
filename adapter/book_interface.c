@@ -19,6 +19,6 @@ PHP_DESIGN_STARTUP_FUNCTION(book_interface)
 {
     zend_class_entry book_interface_container_ce;
     INIT_CLASS_ENTRY(book_interface_container_ce, "PHPDesign\\BookInterface", book_interface_methods);
-    book_interface_ce = zend_register_internal_interface(&book_interface_container_ce);
+    zend_register_internal_interface(&book_interface_container_ce);
     return SUCCESS;
 }
