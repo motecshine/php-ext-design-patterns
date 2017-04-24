@@ -25,45 +25,44 @@ PHP_METHOD(ebook_adapter, __construct)
 
     ebook_adapter_ce = Z_OBJCE_P(getThis());
     zend_update_property(ebook_adapter_ce, getThis(), ZEND_STRL("ebook"), object);
-    zval_ptr_dtor(object);
 }
 
 PHP_METHOD(ebook_adapter, open)
 {
-    zval *object, *retval_ptr;
+    zval *object;
+
     zval function_name;
     ZVAL_STRING(&function_name, "unlock");
     ebook_adapter_ce = Z_OBJCE_P(getThis());
     object = zend_read_property(ebook_adapter_ce, getThis(), ZEND_STRL("ebook"), 0, 0 TSRMLS_CC);
-    call_user_function(CG(function_table), object, &function_name, retval_ptr, 0, NULL TSRMLS_CC);
-    zval_ptr_dtor(retval_ptr);
+    call_user_function(CG(function_table), object, &function_name, return_value, ZEND_NUM_ARGS(), NULL TSRMLS_CC);
     zval_dtor(&function_name);
-    zval_ptr_dtor(object);
+    zval_ptr_dtor(return_value);
 }
 
 PHP_METHOD(ebook_adapter, turnPage)
 {
-    zval *object, *retval_ptr;
+    zval *object;
     zval function_name;
     ZVAL_STRING(&function_name, "pressNext");
     ebook_adapter_ce = Z_OBJCE_P(getThis());
     object = zend_read_property(ebook_adapter_ce, getThis(), ZEND_STRL("ebook"), 0, 0 TSRMLS_CC);
-    call_user_function(CG(function_table), object, &function_name, retval_ptr, 0, NULL TSRMLS_CC);
-    zval_ptr_dtor(retval_ptr);
-    zval_ptr_dtor(object);
+    call_user_function(CG(function_table), object, &function_name, return_value, ZEND_NUM_ARGS(), NULL TSRMLS_CC);
+    zval_dtor(&function_name);
+    zval_ptr_dtor(return_value);
 }
 
 PHP_METHOD(ebook_adapter, getPage)
 {
 
-    zval *object, *retval_ptr;
+    zval *object;
     zval function_name;
     ZVAL_STRING(&function_name, "getPage");
     ebook_adapter_ce = Z_OBJCE_P(getThis());
     object = zend_read_property(ebook_adapter_ce, getThis(), ZEND_STRL("ebook"), 0, 0 TSRMLS_CC);
-    call_user_function(CG(function_table), object, &function_name, retval_ptr, 0, NULL TSRMLS_CC);
-    zval_ptr_dtor(retval_ptr);
-    zval_ptr_dtor(object);
+    call_user_function(CG(function_table), object, &function_name, return_value, ZEND_NUM_ARGS(), NULL TSRMLS_CC);
+    zval_ptr_dtor(return_value);
+    zval_dtor(&function_name);
 }
 
 static zend_function_entry ebook_adapter_methods[] = {

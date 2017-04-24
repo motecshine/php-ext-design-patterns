@@ -14,9 +14,6 @@ PHP_METHOD(book, open)
 {
     book_ce = Z_OBJCE_P(getThis());
     zend_update_property_long(book_ce, getThis(), ZEND_STRL("pageNum"), (zend_long)1 TSRMLS_CC);
-
-    php_printf("open page: %ld\n",Z_LVAL_P(zend_read_property(book_ce, getThis(), ZEND_STRL("pageNum"), 0, 0 TSRMLS_CC)));
-
 }
 
 PHP_METHOD(book, turnPage)
@@ -24,9 +21,7 @@ PHP_METHOD(book, turnPage)
     zend_long  pageNum;
     book_ce = Z_OBJCE_P(getThis());
     pageNum = ++Z_LVAL_P(zend_read_property(book_ce, getThis(), ZEND_STRL("pageNum"), 0, 0 TSRMLS_CC));
-    php_printf("turn page: %ld\n", pageNum);
     zend_update_property_long(book_ce, getThis(), ZEND_STRL("pageNum"), (zend_long) pageNum TSRMLS_CC);
-    php_printf("turn page: %ld\n",Z_LVAL_P(zend_read_property(book_ce, getThis(), ZEND_STRL("pageNum"), 0, 0 TSRMLS_CC)));
 }
 
 PHP_METHOD(book, getPage)

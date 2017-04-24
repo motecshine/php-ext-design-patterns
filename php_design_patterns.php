@@ -7,7 +7,8 @@ if(!extension_loaded('php_design_patterns')) {
 use PHPDesign\MacFactory;
 use PHPDesign\WinFactory;
 use PHPDesign\Book;
-use PHPDesign\kindle;
+use PHPDesign\Kindle;
+use PHPDesign\EbookAdapter;
 $macObj = new MacFactory();
 $macObj->CreateButton();
 $winObj = new WinFactory();
@@ -22,4 +23,10 @@ $kindle = new Kindle();
 $kindle->unlock();
 $kindle->pressNext();
 var_dump($kindle->getPage());
+
+$ebookAdapter = new EbookAdapter(new Kindle());
+
+$ebookAdapter->open();
+$ebookAdapter->turnPage();
+var_dump($ebookAdapter->getPage());
 ?>
