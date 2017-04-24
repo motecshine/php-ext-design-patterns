@@ -13,27 +13,27 @@ zend_class_entry *book_ce;
 PHP_METHOD(book, __construct)
 {
     book_ce = Z_OBJCE_P(getThis());
-    zend_update_property_long(book_ce, getThis(), ZEND_STRL("page"), 0 TSRMLS_CC);
+    zend_update_property_long(book_ce, getThis(), ZEND_STRL("pageNum"), 0 TSRMLS_CC);
 }
 
 PHP_METHOD(book, open)
 {
     book_ce = Z_OBJCE_P(getThis());
-    zend_update_property_long(book_ce, getThis(), ZEND_STRL("page"), 1 TSRMLS_CC);
+    zend_update_property_long(book_ce, getThis(), ZEND_STRL("pageNum"), 1 TSRMLS_CC);
 }
 
 PHP_METHOD(book, turnPage)
 {
     zend_long  pageNum;
     book_ce = Z_OBJCE_P(getThis());
-    pageNum += Z_LVAL_P(zend_read_property(book_ce, getThis(), ZEND_STRL("page"), 0, 0 TSRMLS_CC));
-    zend_update_property_long(book_ce, getThis(), ZEND_STRL("page"), pageNum TSRMLS_CC);
+    pageNum += Z_LVAL_P(zend_read_property(book_ce, getThis(), ZEND_STRL("pageNum"), 0, 0 TSRMLS_CC));
+    zend_update_property_long(book_ce, getThis(), ZEND_STRL("pageNum"), pageNum TSRMLS_CC);
 }
 
 PHP_METHOD(book, getPage)
 {
     zend_long pageNum;
-    pageNum = Z_LVAL_P(zend_read_property(book_ce, getThis(), ZEND_STRL("page"), 0, 0 TSRMLS_CC));
+    pageNum = Z_LVAL_P(zend_read_property(book_ce, getThis(), ZEND_STRL("pageNum"), 0, 0 TSRMLS_CC));
     RETURN_LONG(pageNum);
 }
 
@@ -62,5 +62,7 @@ PHP_DESIGN_STARTUP_FUNCTION(book)
 
     zend_class_implements(book_ce TSRMLS_CC, 1, book_interface_ce);
     zend_string_release(book_interface_name);
+    /* declare book class member */
+    zend_declare_property_long(book_ce, ZEND_STRL("pageNum"), 0, ZEND_ACC_PRIVATE);
     return SUCCESS;
 }

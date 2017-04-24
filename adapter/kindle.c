@@ -10,10 +10,19 @@
 #include "adapter/kindle.h"
 
 zend_class_entry *kindle_ce;
+PHP_METHOD(kindle, __construct)
+{
+    kindle_ce = Z_OBJCE_P(getThis());
+    zend_update_property_long(kindle_ce, getThis(), ZEND_STRL("pageNum"), 0 TSRMLS_CC);
+    zend_update_property_long(kindle_ce, getThis(), ZEND_STRL("pageNumTotal"), 100 TSRMLS_CC);
+}
 
 PHP_METHOD(kindle, pressNext)
 {
-
+    zend_long pageNum;
+    kindle_ce = Z_OBJCE_P(getThis());
+    pageNum = Z_LVAL_P(zend_read_property(kindle_ce, getThis(), ZEND_STRL("pageNum"), 0, 0 TSRMLS_CC));
+    zend_update_property_long(kindle_ce, getThis(), ZEND_STRL("pageNum"), pageNum TSRMLS_CC);
 }
 
 PHP_METHOD(kindle, unlock)
@@ -23,13 +32,21 @@ PHP_METHOD(kindle, unlock)
 
 PHP_METHOD(kindle, getPage)
 {
-
+    zend_long pageNum, pageNumTotal;
+    zval retval;
+    array_init(&retval);
+    pageNum = Z_LVAL_P(zend_read_property(kindle_ce, getThis(), ZEND_STRL("pageNum"), 0, 0 TSRMLS_CC));
+    pageNumTotal = Z_LVAL_P(zend_read_property(kindle_ce, getThis(), ZEND_STRL("pageNumTotal"), 0, 0 TSRMLS_CC));
+    add_index_long(&retval, 0, pageNum);
+    add_next_index_long(&retval, pageNumTotal);
+    RETURN_ZVAL(&retval, 0, 1);
 }
 
 static zend_function_entry kindle_methods[] = {
-    PHP_ME(kindle, pressNext, NULL, ZEND_ACC_PUBLIC)
-    PHP_ME(kindle, unlock,    NULL, ZEND_ACC_PUBLIC)
-    PHP_ME(kindle, getPage,   NULL, ZEND_ACC_PUBLIC)
+    PHP_ME(kindle, __construct, NULL, ZEND_ACC_PUBLIC|ZEND_ACC_CTOR)
+    PHP_ME(kindle, pressNext,   NULL,  ZEND_ACC_PUBLIC)
+    PHP_ME(kindle, unlock,      NULL,  ZEND_ACC_PUBLIC)
+    PHP_ME(kindle, getPage,     NULL,  ZEND_ACC_PUBLIC)
     PHP_FE_END
 };
 
@@ -50,6 +67,9 @@ PHP_DESIGN_STARTUP_FUNCTION(kindle)
 
     zend_class_implements(kindle_ce TSRMLS_CC, 1, ebook_interface_ce);
     zend_string_release(ebook_interface_name);
+    /* declare book class member */
+    zend_declare_property_long(kindle_ce, ZEND_STRL("pageNum"), 0, ZEND_ACC_PRIVATE);
+    zend_declare_property_long(kindle_ce, ZEND_STRL("pageNumTotal"), 0, ZEND_ACC_PRIVATE);
     return SUCCESS;
 }
 
