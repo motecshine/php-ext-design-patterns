@@ -7,9 +7,11 @@
 /* include global headers*/
 #include "php_design_patterns.h"
 #include "adapter/book_interface.h"
+#include "adapter/ebook_adapter.h"
+
 zend_class_entry *ebook_adapter_ce;
 
-PHP_METHOD(ebook_adapter, construct)
+PHP_METHOD(ebook_adapter, __construct)
 {
 
 }
@@ -30,7 +32,7 @@ PHP_METHOD(ebook_adapter, getPage)
 }
 
 static zend_function_entry ebook_adapter_methods[] = {
-    PHP_ME(ebook_adapter, construct, NULL, ZEND_ACC_PUBLIC|ZEND_ACC_CTOR)
+    PHP_ME(ebook_adapter, __construct, NULL, ZEND_ACC_PUBLIC|ZEND_ACC_CTOR)
     PHP_ME(ebook_adapter, open,      NULL, ZEND_ACC_PUBLIC)
     PHP_ME(ebook_adapter, turnPage,  NULL, ZEND_ACC_PUBLIC)
     PHP_ME(ebook_adapter, getPage,   NULL, ZEND_ACC_PUBLIC)

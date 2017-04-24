@@ -7,6 +7,7 @@
 /* include global headers*/
 #include "php_design_patterns.h"
 #include "adapter/ebook_interface.h"
+#include "adapter/kindle.h"
 
 zend_class_entry *kindle_ce;
 

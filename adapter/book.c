@@ -7,27 +7,41 @@
 /* include global headers*/
 #include "php_design_patterns.h"
 #include "adapter/book_interface.h"
+#include "adapter/book.h"
 zend_class_entry *book_ce;
+
+PHP_METHOD(book, __construct)
+{
+    book_ce = Z_OBJCE_P(getThis());
+    zend_update_property_long(book_ce, getThis(), ZEND_STRL("page"), 0 TSRMLS_CC);
+}
 
 PHP_METHOD(book, open)
 {
-
+    book_ce = Z_OBJCE_P(getThis());
+    zend_update_property_long(book_ce, getThis(), ZEND_STRL("page"), 1 TSRMLS_CC);
 }
 
 PHP_METHOD(book, turnPage)
 {
-
+    zend_long  pageNum;
+    book_ce = Z_OBJCE_P(getThis());
+    pageNum += Z_LVAL_P(zend_read_property(book_ce, getThis(), ZEND_STRL("page"), 0, 0 TSRMLS_CC));
+    zend_update_property_long(book_ce, getThis(), ZEND_STRL("page"), pageNum TSRMLS_CC);
 }
 
 PHP_METHOD(book, getPage)
 {
-
+    zend_long pageNum;
+    pageNum = Z_LVAL_P(zend_read_property(book_ce, getThis(), ZEND_STRL("page"), 0, 0 TSRMLS_CC));
+    RETURN_LONG(pageNum);
 }
 
 static zend_function_entry book_methods[] = {
-    PHP_ME(book, open, NULL, ZEND_ACC_PUBLIC)
-    PHP_ME(book, turnPage, NULL, ZEND_ACC_PUBLIC)
-    PHP_ME(book, getPage, NULL, ZEND_ACC_PUBLIC)
+    PHP_ME(book, __construct, NULL, ZEND_ACC_PUBLIC|ZEND_ACC_CTOR)
+    PHP_ME(book, open,        NULL, ZEND_ACC_PUBLIC)
+    PHP_ME(book, turnPage,    NULL, ZEND_ACC_PUBLIC)
+    PHP_ME(book, getPage,     NULL, ZEND_ACC_PUBLIC)
     PHP_FE_END
 };
 
