@@ -13,5 +13,7 @@ $winObj = new WinFactory();
 $winObj->CreateButton();
 
 $bookObj = new Book();
-var_dump($bookObj);
+$bookObj->open();
+$bookObj->turnPage();
+var_dump($bookObj->getPage());
 ?>

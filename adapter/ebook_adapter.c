@@ -25,6 +25,7 @@ PHP_METHOD(ebook_adapter, __construct)
 
     ebook_adapter_ce = Z_OBJCE_P(getThis());
     zend_update_property(ebook_adapter_ce, getThis(), ZEND_STRL("ebook"), object);
+    zval_ptr_dtor(object);
 }
 
 PHP_METHOD(ebook_adapter, open)
@@ -37,6 +38,7 @@ PHP_METHOD(ebook_adapter, open)
     call_user_function(CG(function_table), object, &function_name, retval_ptr, 0, NULL TSRMLS_CC);
     zval_ptr_dtor(retval_ptr);
     zval_dtor(&function_name);
+    zval_ptr_dtor(object);
 }
 
 PHP_METHOD(ebook_adapter, turnPage)
@@ -48,6 +50,7 @@ PHP_METHOD(ebook_adapter, turnPage)
     object = zend_read_property(ebook_adapter_ce, getThis(), ZEND_STRL("ebook"), 0, 0 TSRMLS_CC);
     call_user_function(CG(function_table), object, &function_name, retval_ptr, 0, NULL TSRMLS_CC);
     zval_ptr_dtor(retval_ptr);
+    zval_ptr_dtor(object);
 }
 
 PHP_METHOD(ebook_adapter, getPage)
@@ -60,6 +63,7 @@ PHP_METHOD(ebook_adapter, getPage)
     object = zend_read_property(ebook_adapter_ce, getThis(), ZEND_STRL("ebook"), 0, 0 TSRMLS_CC);
     call_user_function(CG(function_table), object, &function_name, retval_ptr, 0, NULL TSRMLS_CC);
     zval_ptr_dtor(retval_ptr);
+    zval_ptr_dtor(object);
 }
 
 static zend_function_entry ebook_adapter_methods[] = {
@@ -72,20 +76,19 @@ static zend_function_entry ebook_adapter_methods[] = {
 
 PHP_DESIGN_STARTUP_FUNCTION(ebook_adapter)
 {
-    zend_string *book_interface_name;
+    zend_string *book_interface_name, *book_interface_name_tolower;
     zend_class_entry ebook_adapter_container_ce;
-    zval *object;
     book_interface_name = strpprintf(0, "PHPDesign\\BookInterface");
-
+    book_interface_name_tolower = zend_string_tolower(book_interface_name);
     INIT_CLASS_ENTRY(ebook_adapter_container_ce, "PHPDesign\\EBookAdapter", ebook_adapter_methods);
     ebook_adapter_ce = zend_register_internal_class(&ebook_adapter_container_ce TSRMLS_CC);
-    if ((book_interface_ce = zend_hash_find_ptr(CG(class_table), zend_string_tolower(book_interface_name))) == NULL) {
+    if ((book_interface_ce = zend_hash_find_ptr(CG(class_table), book_interface_name_tolower)) == NULL) {
         php_error_docref(NULL TSRMLS_CC, E_ERROR, "Can not implement book_interface");
         return FAILURE;
     }
-
+    zend_declare_property_null(ebook_adapter_ce, ZEND_STRL("ebook"), ZEND_ACC_PROTECTED);
     zend_class_implements(ebook_adapter_ce TSRMLS_CC, 1, book_interface_ce);
     zend_string_release(book_interface_name);
-    zend_declare_property(ebook_adapter_ce, ZEND_STRL("ebook"), object, ZEND_ACC_PUBLIC);
+    zend_string_release(book_interface_name_tolower);
     return SUCCESS;
 }

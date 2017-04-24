@@ -52,24 +52,25 @@ static zend_function_entry kindle_methods[] = {
 
 PHP_DESIGN_STARTUP_FUNCTION(kindle)
 {
-    zend_string *ebook_interface_name;
+    zend_string *ebook_interface_name, *ebook_interface_name_tolower;
     zend_class_entry kindle_container_ce;
 
     ebook_interface_name = strpprintf(0, "PHPDesign\\EBookInterface");
-
+    ebook_interface_name_tolower = zend_string_tolower(ebook_interface_name_tolower);
     INIT_CLASS_ENTRY(kindle_container_ce, "PHPDesign\\Kindle", kindle_methods);
     kindle_ce = zend_register_internal_class(&kindle_container_ce TSRMLS_CC);
 
-    if ((ebook_interface_ce = zend_hash_find_ptr(CG(class_table), zend_string_tolower(ebook_interface_name))) == NULL) {
+    if ((ebook_interface_ce = zend_hash_find_ptr(CG(class_table), ebook_interface_name_tolower)) == NULL) {
         php_error_docref(NULL TSRMLS_CC, E_ERROR, "Can note implement ebook interface");
         return FAILURE;
     }
 
-    zend_class_implements(kindle_ce TSRMLS_CC, 1, ebook_interface_ce);
-    zend_string_release(ebook_interface_name);
     /* declare book class member */
     zend_declare_property_long(kindle_ce, ZEND_STRL("pageNum"), 0, ZEND_ACC_PRIVATE);
     zend_declare_property_long(kindle_ce, ZEND_STRL("pageNumTotal"), 0, ZEND_ACC_PRIVATE);
+    zend_class_implements(kindle_ce TSRMLS_CC, 1, ebook_interface_ce);
+    zend_string_release(ebook_interface_name);
+    zend_string_release(ebook_interface_name_tolower);
     return SUCCESS;
 }
 
