@@ -6,8 +6,12 @@ if(!extension_loaded('php_design_patterns')) {
 }
 use PHPDesign\MacFactory;
 use PHPDesign\WinFactory;
+use PHPDesign\Book;
 $macObj = new MacFactory();
 $macObj->CreateButton();
 $winObj = new WinFactory();
 $winObj->CreateButton();
+
+$bookObj = new Book();
+var_dump($bookObj);
 ?>

@@ -19,27 +19,47 @@ zend_class_entry *ebook_adapter_ce;
 PHP_METHOD(ebook_adapter, __construct)
 {
     zval * object;
-
     ZEND_PARSE_PARAMETERS_START(1, 1)
         Z_PARAM_ZVAL(object)
     ZEND_PARSE_PARAMETERS_END();
+
     ebook_adapter_ce = Z_OBJCE_P(getThis());
     zend_update_property(ebook_adapter_ce, getThis(), ZEND_STRL("ebook"), object);
 }
 
 PHP_METHOD(ebook_adapter, open)
 {
-    //zend_call_method_with_0_params();
+    zval *object, *retval_ptr;
+    zval function_name;
+    ZVAL_STRING(&function_name, "unlock");
+    ebook_adapter_ce = Z_OBJCE_P(getThis());
+    object = zend_read_property(ebook_adapter_ce, getThis(), ZEND_STRL("ebook"), 0, 0 TSRMLS_CC);
+    call_user_function(CG(function_table), object, &function_name, retval_ptr, 0, NULL TSRMLS_CC);
+    zval_ptr_dtor(retval_ptr);
+    zval_dtor(&function_name);
 }
 
 PHP_METHOD(ebook_adapter, turnPage)
 {
-
+    zval *object, *retval_ptr;
+    zval function_name;
+    ZVAL_STRING(&function_name, "pressNext");
+    ebook_adapter_ce = Z_OBJCE_P(getThis());
+    object = zend_read_property(ebook_adapter_ce, getThis(), ZEND_STRL("ebook"), 0, 0 TSRMLS_CC);
+    call_user_function(CG(function_table), object, &function_name, retval_ptr, 0, NULL TSRMLS_CC);
+    zval_ptr_dtor(retval_ptr);
 }
 
 PHP_METHOD(ebook_adapter, getPage)
 {
 
+    zval *object, *retval_ptr;
+    zval function_name;
+    ZVAL_STRING(&function_name, "getPage");
+    ebook_adapter_ce = Z_OBJCE_P(getThis());
+    object = zend_read_property(ebook_adapter_ce, getThis(), ZEND_STRL("ebook"), 0, 0 TSRMLS_CC);
+    call_user_function(CG(function_table), object, &function_name, retval_ptr, 0, NULL TSRMLS_CC);
+    zval_ptr_dtor(retval_ptr);
 }
 
 static zend_function_entry ebook_adapter_methods[] = {
