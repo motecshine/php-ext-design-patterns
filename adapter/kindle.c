@@ -60,7 +60,7 @@ PHP_DESIGN_STARTUP_FUNCTION(kindle)
 
     /* declare book class member */
     zend_declare_property_long(kindle_ce, ZEND_STRL("pageNum"), 0, ZEND_ACC_PRIVATE);
-    zend_declare_property_long(kindle_ce, ZEND_STRL("pageNumTotal"), 0, ZEND_ACC_PRIVATE);
+    zend_declare_property_long(kindle_ce, ZEND_STRL("pageNumTotal"), 100, ZEND_ACC_PRIVATE);
     zend_class_implements(kindle_ce, 1, ebook_interface_ce);
     zend_string_release(ebook_interface_name);
     zend_string_release(ebook_interface_name_tolower);
