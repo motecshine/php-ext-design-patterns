@@ -35,14 +35,22 @@ PHP_MINIT_FUNCTION(php_design_patterns)
 	/* If you have INI entries, uncomment these lines
 	REGISTER_INI_ENTRIES();
 	*/
+	/*Abstract Factory*/
 	PHP_DESIGN_STARTUP(abstract_factory);
 	PHP_DESIGN_STARTUP(win_factory);
 	PHP_DESIGN_STARTUP(mac_factory);
+	/* Adapter */
 	PHP_DESIGN_STARTUP(book_interface);
 	PHP_DESIGN_STARTUP(book);
 	PHP_DESIGN_STARTUP(ebook_interface);
 	PHP_DESIGN_STARTUP(ebook_adapter);
 	PHP_DESIGN_STARTUP(kindle);
+	/* Bridge */
+	PHP_DESIGN_STARTUP(formatter_interface);
+	PHP_DESIGN_STARTUP(hello_world_service);
+	PHP_DESIGN_STARTUP(html_formatter);
+	PHP_DESIGN_STARTUP(plain_text_formatter);
+	PHP_DESIGN_STARTUP(service);
 	return SUCCESS;
 }
 /* }}} */

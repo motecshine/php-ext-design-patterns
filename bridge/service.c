@@ -7,7 +7,7 @@
 #include "ext/standard/info.h"
 /* include global headers*/
 #include "php_design_patterns.h"
-#include "adapter/service.h"
+#include "bridge/service.h"
 
 ZEND_BEGIN_ARG_INFO(service_arg_info, 0)
     ZEND_ARG_INFO(0, printer)
@@ -41,7 +41,7 @@ PHP_METHOD(service, setImplementation)
 zend_function_entry service_methods[] = {
     PHP_ME(service, __construct, service_arg_info, ZEND_ACC_PUBLIC | ZEND_ACC_CTOR)
     PHP_ME(service, setImplementation, service_arg_info, ZEND_ACC_PUBLIC)
-    PHP_ABSTRACT_ME(service, get)
+    PHP_ABSTRACT_ME(service, get, NULL)
     PHP_FE_END
 };
 
