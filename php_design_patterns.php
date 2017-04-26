@@ -9,6 +9,10 @@ use PHPDesign\WinFactory;
 use PHPDesign\Book;
 use PHPDesign\Kindle;
 use PHPDesign\EbookAdapter;
+use PHPDesign\HelloWorldService;
+use PHPDesign\PlainTextFormatter;
+use PHPDesign\HtmlFormatter;
+
 $macObj = new MacFactory();
 $macObj->CreateButton();
 $winObj = new WinFactory();
@@ -29,4 +33,13 @@ $ebookAdapter = new EbookAdapter(new Kindle());
 $ebookAdapter->open();
 $ebookAdapter->turnPage();
 var_dump($ebookAdapter->getPage());
+
+/* Bridge Patterns*/
+$service = new HelloWorldService(new HtmlFormatter);
+
+$service->get();
+$htmlFormatter = new HtmlFormatter();
+echo $htmlFormatter->format("ss");
+$PlainTextFormatter = new PlainTextFormatter();
+echo $PlainTextFormatter->format("ss");
 ?>

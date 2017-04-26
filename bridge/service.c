@@ -37,11 +37,15 @@ PHP_METHOD(service, setImplementation)
     zend_update_property(service_ce, getThis(), ZEND_STRL("implementation"), printer);
 }
 
+PHP_METHOD(service, get)
+{
+
+}
 
 zend_function_entry service_methods[] = {
     PHP_ME(service, __construct, service_arg_info, ZEND_ACC_PUBLIC | ZEND_ACC_CTOR)
     PHP_ME(service, setImplementation, service_arg_info, ZEND_ACC_PUBLIC)
-    PHP_ABSTRACT_ME(service, get, NULL)
+    PHP_ME(service, get, NULL, ZEND_ACC_ABSTRACT)
     PHP_FE_END
 };
 
@@ -50,7 +54,8 @@ PHP_DESIGN_STARTUP_FUNCTION(service)
     zend_class_entry service_container_ce;
     INIT_CLASS_ENTRY(service_container_ce, "PHPDesign\\Service", service_methods);
     service_ce = zend_register_internal_class(&service_container_ce TSRMLS_CC);
+    service_ce->ce_flags |= ZEND_ACC_EXPLICIT_ABSTRACT_CLASS;
     /* Declare $implementation*/
-    zend_declare_property_null(service_ce, ZEND_STRL("implementation"), ZEND_ACC_PROTECTED);
+    zend_declare_property_null(service_ce, ZEND_STRL("implementation"), ZEND_ACC_PUBLIC);
     return SUCCESS;
 }

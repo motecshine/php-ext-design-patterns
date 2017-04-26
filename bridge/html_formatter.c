@@ -16,13 +16,13 @@ ZEND_END_ARG_INFO()
 
 PHP_METHOD(html_formatter, format)
 {
-    zval *text;
+    zend_string *text;
 
     ZEND_PARSE_PARAMETERS_START(1, 1)
-        Z_PARAM_ZVAL(text)
+        Z_PARAM_STR(text)
     ZEND_PARSE_PARAMETERS_END();
 
-    php_printf("<p>%s</p>", Z_STR_P(text));
+    php_printf("<p>%s</p>\n", ZSTR_VAL(text));
 }
 
 static zend_function_entry  html_formatter_methods[] = {

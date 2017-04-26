@@ -19,13 +19,13 @@ PHP_METHOD(hello_world_service, get)
     ZVAL_STRING(&function_name, "format");
     /* set param string */
     ZVAL_STRING(&hello_world_string, "Hello World");
+
     /* read $this->implementation */
-    service_ce = Z_OBJCE_P(getThis());
-    object = zend_read_property(service_ce, getThis(), ZEND_STRL("implementation"), 0, 0 TSRMLS_CC);
+    hello_world_service_ce = Z_OBJCE_P(getThis());
+    object = zend_read_property(hello_world_service_ce, getThis(), ZEND_STRL("implementation"), 0, 0 TSRMLS_CC);
     call_user_function(CG(function_table), object, &function_name ,return_value, 1, &hello_world_string TSRMLS_CC);
     zval_dtor(&function_name);
-    zval_ptr_dtor(return_value);
-    zval_ptr_dtor(&hello_world_string);
+    zval_dtor(&hello_world_string);
 }
 
 zend_function_entry hello_world_service_methods[] = {
