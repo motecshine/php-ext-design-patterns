@@ -7,12 +7,25 @@
 #include "ext/standard/info.h"
 /* include global headers*/
 #include "php_design_patterns.h"
-#include "adapter/service.h"
-#include "adapter/hello_world_service.h"
+#include "bridge/service.h"
+#include "bridge/hello_world_service.h"
 
 PHP_METHOD(hello_world_service, get)
 {
-
+    zval *object;
+    zval function_name;
+    zval hello_string;
+    /* set function name*/
+    ZVAL_STRING(&function_name, "format");
+    /* set param string */
+    ZVAL_STRING(&hello_world_string, "Hello World");
+    /* read $this->implementation */
+    service_ce = Z_OBJCE_P(getThis());
+    object = zend_read_property(service_ce, getThis(), ZEND_STRL("implementation"), 0, 0 TSRMLS_CC);
+    call_user_function(CG(function_table), object, return_value, 1, &hello_string);
+    zval_dtor(&function_name);
+    zval_ptr_dtor(return_value);
+    zval_ptr_dtor(&hello_string);
 }
 
 zend_function_entry hello_world_service_methods[] = {
