@@ -25,6 +25,7 @@ PHP_METHOD(hello_world_service, get)
     object = zend_read_property(hello_world_service_ce, getThis(), ZEND_STRL("implementation"), 0, 0 TSRMLS_CC);
     call_user_function(CG(function_table), object, &function_name ,return_value, 1, &hello_world_string TSRMLS_CC);
     zval_dtor(&function_name);
+    zval_ptr_dtor(return_value);
     zval_dtor(&hello_world_string);
 }
 

@@ -36,10 +36,7 @@ var_dump($ebookAdapter->getPage());
 
 /* Bridge Patterns*/
 $service = new HelloWorldService(new HtmlFormatter);
-
 $service->get();
-$htmlFormatter = new HtmlFormatter();
-echo $htmlFormatter->format("ss");
-$PlainTextFormatter = new PlainTextFormatter();
-echo $PlainTextFormatter->format("ss");
+$service = new HelloWorldService(new PlainTextFormatter);
+$service->get();
 ?>

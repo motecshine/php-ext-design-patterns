@@ -45,7 +45,7 @@ PHP_METHOD(service, get)
 zend_function_entry service_methods[] = {
     PHP_ME(service, __construct, service_arg_info, ZEND_ACC_PUBLIC | ZEND_ACC_CTOR)
     PHP_ME(service, setImplementation, service_arg_info, ZEND_ACC_PUBLIC)
-    PHP_ME(service, get, NULL, ZEND_ACC_ABSTRACT)
+    PHP_ME(service, get, NULL, ZEND_ACC_ABSTRACT | ZEND_ACC_PUBLIC)
     PHP_FE_END
 };
 

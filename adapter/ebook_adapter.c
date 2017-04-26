@@ -49,6 +49,7 @@ PHP_METHOD(ebook_adapter, turnPage)
     object = zend_read_property(ebook_adapter_ce, getThis(), ZEND_STRL("ebook"), 0, 0 TSRMLS_CC);
     call_user_function(CG(function_table), object, &function_name, return_value, ZEND_NUM_ARGS(), NULL TSRMLS_CC);
     zval_dtor(&function_name);
+    zval_ptr_dtor(return_value);
 }
 
 PHP_METHOD(ebook_adapter, getPage)
