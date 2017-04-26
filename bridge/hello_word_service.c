@@ -27,12 +27,11 @@ PHP_DESIGN_STARTUP_FUNCTION(hello_world_service)
     service_name = strpprintf(0, "PHPDesign\\Service");
     service_name_tolower = zend_string_tolower(service_name);
     INIT_CLASS_ENTRY(hello_world_service_container_ce, "PHPDesign\\HelloWorldService");
-    hello_world_service_ce = zend_register_internal_class(&hello_world_service_container_ce TSRMLS_CC);
     if ((service_ce = zend_hash_find_ptr(CG(class_table), service_name_tolower)) == NULL) {
         php_error_docref(NULL TSRMLS_CC, E_ERROR, "Can not extends PHPDesign\\Service class");
         return FAILURE;
     }
-    zend_class_implements(hello_world_service_ce TSRMLS_CC, 1, service_ce);
+    hello_world_service_ce = zend_register_internal_class_ex(&hello_world_service_container_ce, service_ce);
     zend_string_release(service_name);
     zend_string_release(service_name_tolower);
     return SUCCESS;

@@ -6,7 +6,7 @@
 
 /* include global headers*/
 #include "php_design_patterns.h"
-#include "adapter/book_interface.h"
+#include "bridge/formatter_interface.h"
 
 ZEND_BEGIN_ARG_INFO(formatter_interface_arg, 0)
     ZEND_ARG_INFO(0, text)
