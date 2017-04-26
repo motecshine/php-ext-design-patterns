@@ -3,3 +3,5 @@
 Abstract Factory (抽象工厂模式)
 
 Adatpter (适配器模式)
+
+Bridge (桥接模式)
