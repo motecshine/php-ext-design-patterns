@@ -1,0 +1,4 @@
+#ifndef BIOS_INTERFACE_H
+#define BIOS_INTERFACE_H
+PHP_DESIGN_STARTUP_FUNCTION(bios_interface);
+#endif
