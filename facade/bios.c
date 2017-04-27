@@ -45,7 +45,7 @@ PHP_DESIGN_STARTUP_FUNCTION(bios)
     }
 
     /* initial class */
-    INIT_CLASS_ENTRY(bios_container_ce, bios_methods);
+    INIT_CLASS_ENTRY(bios_container_ce, "PHPDesign\\Facade\\Bios", bios_methods);
     bios_ce = zend_register_class_internal(&bios_container_ce TSRMLS_CC);
 
     /* implement os_interface */
