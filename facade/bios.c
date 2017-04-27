@@ -34,12 +34,12 @@ static zend_function_entry bios_methods[] = {
 PHP_DESIGN_STARTUP_FUNCTION(bios)
 {
     zend_class_entry bios_container_ce;
-    zend_sting *bios_interface_name, *bios_interface_tolower;
+    zend_string *bios_interface_name, *bios_interface_name_tolower;
 
     bios_interface_name = strpprintf(0, "PHPDesign\\Facade\\BiosInterface");
-    bios_interface_tolower = zend_string_tolower(bios_interface_name);
+    bios_interface_name_tolower = zend_string_tolower(bios_interface_name);
 
-    if ((bios_interface_ce = zend_hash_find_ptr(CG(class_table), bios_interface_tolower)) == NULL) {
+    if ((bios_interface_ce = zend_hash_find_ptr(CG(class_table), bios_interface_name_tolower)) == NULL) {
         php_error_docref(NULL TSRMLS_CC, E_ERROR, "Can not implement PHPDesign\\Facade\\BiosInterface");
         return FAILURE;
     }
@@ -51,6 +51,6 @@ PHP_DESIGN_STARTUP_FUNCTION(bios)
     /* implement os_interface */
     zend_class_implements(bios_ce, 1, bios_interface_ce);
     zend_string_release(bios_interface_name);
-    zend_string_release(bios_interface_tolower);
+    zend_string_release(bios_interface_name_tolower);
     return SUCCESS;
 }

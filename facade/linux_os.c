@@ -30,12 +30,12 @@ static zend_function_entry linux_os_methods[] = {
 PHP_DESIGN_STARTUP_FUNCTION(linux_os)
 {
     zend_class_entry linux_os_container_ce;
-    zend_sting *os_interface_name, *os_interface_tolower;
+    zend_string *os_interface_name, *os_interface_name_tolower;
 
     os_interface_name = strpprintf(0, "PHPDesign\\Facade\\OsInterface");
-    os_interface_tolower = zend_string_tolower(os_interface_name);
+    os_interface_name_tolower = zend_string_tolower(os_interface_name);
 
-    if ((os_interface_ce = zend_hash_find_ptr(CG(class_table), os_interface_tolower)) == NULL) {
+    if ((os_interface_ce = zend_hash_find_ptr(CG(class_table), os_interface_name_tolower)) == NULL) {
         php_error_docref(NULL TSRMLS_CC, E_ERROR, "Can not implement PHPDesign\\Facade\\OsInterface");
         return FAILURE;
     }
@@ -47,6 +47,6 @@ PHP_DESIGN_STARTUP_FUNCTION(linux_os)
     /* implement os_interface */
     zend_class_implements(linux_os_ce, 1, os_interface_ce);
     zend_string_release(os_interface_name);
-    zend_string_release(os_interface_tolower);
+    zend_string_release(os_interface_name_tolower);
     return SUCCESS;
 }

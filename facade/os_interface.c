@@ -8,7 +8,7 @@
 #include "php_design_patterns.h"
 #include "facade/os_interface.h"
 
-static zend_function_entry bios_interface_methods[] = {
+static zend_function_entry os_interface_methods[] = {
     PHP_ABSTRACT_ME(os_interface, halt, NULL)
     PHP_ABSTRACT_ME(os_interface, getName, NULL)
     PHP_FE_END

@@ -18,15 +18,15 @@ PHP_METHOD(facade, __construct)
 {
     zval *bios, *os;
 
-    ZEND_PARSE_PARAMS_START(2, 2)
-        Z_PARAM_ZVAL(0, os)
-        Z_PARAM_ZVAL(0, bios)
-    ZEND_PARSE_PARAMS_END();
+    ZEND_PARSE_PARAMETERS_START(2, 2)
+        Z_PARAM_ZVAL(os)
+        Z_PARAM_ZVAL(bios)
+    ZEND_PARSE_PARAMETERS_END();
 
     facade_ce = Z_OBJCE_P(getThis());
     /* Update Facade Property*/
-    zend_update_property(facade_ce, getThis, ZEND_STRL("os"), os);
-    zend_update_property(facade_ce, getThis, ZEND_STRL("bios"), bios);
+    zend_update_property(facade_ce, getThis(), ZEND_STRL("os"), os);
+    zend_update_property(facade_ce, getThis(), ZEND_STRL("bios"), bios);
 }
 
 PHP_METHOD(facade, turnOn)
@@ -45,9 +45,9 @@ PHP_METHOD(facade, turnOn)
     /* Get $this->bios */
     bios_object = zend_read_property(facade_ce , getThis(), ZEND_STRL("bios"), 0, 0 TSRMLS_CC);
     /* Execute $this->bios->execute() */
-    call_user_function(CG(function_table), bios_object, execute_name, return_value, ZEND_NUM_ARGS(), NULL TSRMLS_CC);
-    call_user_function(CG(function_table), bios_object, wait_for_key_press_name, return_value, ZEND_NUM_ARGS(), NULL TSRMLS_CC);
-    call_user_function(CG(function_table), bios_object, launch_name, return_value ZEND_NUM_ARGS(), os_object TSRMLS_CC);
+    call_user_function(CG(function_table), bios_object, &execute_name, return_value, ZEND_NUM_ARGS(), NULL TSRMLS_CC);
+    call_user_function(CG(function_table), bios_object, &wait_for_key_press_name, return_value, ZEND_NUM_ARGS(), NULL TSRMLS_CC);
+    call_user_function(CG(function_table), bios_object, &launch_name, return_value, ZEND_NUM_ARGS(), os_object TSRMLS_CC);
 
     zval_dtor(&execute_name);
     zval_dtor(&wait_for_key_press_name);
@@ -69,8 +69,8 @@ PHP_METHOD(facade, turnOff)
     /* Get $this->bios */
     bios_object = zend_read_property(facade_ce , getThis(), ZEND_STRL("bios"), 0, 0 TSRMLS_CC);
 
-    call_user_function(CG(function_table), bios_object, power_down_name, return_value, ZEND_NUM_ARGS(), NULL TSRMLS_CC);
-    call_user_function(CG(function_table), os_object, halt_name, return_value, ZEND_NUM_ARGS(), NULL TSRMLS_CC);
+    call_user_function(CG(function_table), bios_object, &power_down_name, return_value, ZEND_NUM_ARGS(), NULL TSRMLS_CC);
+    call_user_function(CG(function_table), os_object, &halt_name, return_value, ZEND_NUM_ARGS(), NULL TSRMLS_CC);
     zval_dtor(&halt_name);
     zval_dtor(&power_down_name);
 }
