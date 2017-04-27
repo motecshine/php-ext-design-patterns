@@ -31,12 +31,48 @@ PHP_METHOD(facade, __construct)
 
 PHP_METHOD(facade, turnOn)
 {
+    zval *bios_object, *os_object;
+    zval execute_name, wait_for_key_press_name, launch_name;
 
+    /* Set Function Name */
+    ZVAL_STRING(&execute_name, "execute");
+    ZVAL_STRING(&wait_for_key_press_name, "waitForKeyPress");
+    ZVAL_STRING(&launch_name, "launch");
+
+    facade_ce = Z_OBJCE_P(getThis());
+
+    os_object = zend_read_property(facade_ce , getThis(), ZEND_STRL("os"), 0, 0 TSRMLS_CC);
+    /* Get $this->bios */
+    bios_object = zend_read_property(facade_ce , getThis(), ZEND_STRL("bios"), 0, 0 TSRMLS_CC);
+    /* Execute $this->bios->execute() */
+    call_user_function(CG(function_table), bios_object, execute_name, return_value, ZEND_NUM_ARGS(), NULL TSRMLS_CC);
+    call_user_function(CG(function_table), bios_object, wait_for_key_press_name, return_value, ZEND_NUM_ARGS(), NULL TSRMLS_CC);
+    call_user_function(CG(function_table), bios_object, launch_name, return_value ZEND_NUM_ARGS(), os_object TSRMLS_CC);
+
+    zval_dtor(&execute_name);
+    zval_dtor(&wait_for_key_press_name);
+    zval_dtor(&launch_name);
 }
+
 
 PHP_METHOD(facade, turnOff)
 {
 
+    zval *bios_object, *os_object;
+    zval halt_name, power_down_name;
+    facade_ce = Z_OBJCE_P(getThis());
+
+    ZVAL_STRING(&halt_name, "halt");
+    ZVAL_STRING(&power_down_name, "powerDown");
+
+    os_object = zend_read_property(facade_ce , getThis(), ZEND_STRL("os"), 0, 0 TSRMLS_CC);
+    /* Get $this->bios */
+    bios_object = zend_read_property(facade_ce , getThis(), ZEND_STRL("bios"), 0, 0 TSRMLS_CC);
+
+    call_user_function(CG(function_table), bios_object, power_down_name, return_value, ZEND_NUM_ARGS(), NULL TSRMLS_CC);
+    call_user_function(CG(function_table), os_object, halt_name, return_value, ZEND_NUM_ARGS(), NULL TSRMLS_CC);
+    zval_dtor(&halt_name);
+    zval_dtor(&power_down_name);
 }
 
 static zend_function_entry facade_methods[] = {
