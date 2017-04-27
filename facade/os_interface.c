@@ -6,7 +6,7 @@
 
 /* include global headers*/
 #include "php_design_patterns.h"
-#include "facade/os_interface.h"i
+#include "facade/os_interface.h"
 
 static zend_function_entry bios_interface_methods[] = {
     PHP_ABSTRACT_ME(os_interface, halt, NULL)

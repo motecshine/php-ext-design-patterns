@@ -70,10 +70,15 @@ if test "$PHP_PHP_DESIGN_PATTERNS" != "no"; then
   adapter/ebook_interface.c             \
   adapter/kindle.c                      \
   bridge/formatter_interface.c          \
-  bridge/hello_world_service.c           \
+  bridge/hello_world_service.c          \
   bridge/html_formatter.c               \
   bridge/plain_text_formatter.c         \
   bridge/service.c                      \
+  facade/bios.c                         \
+  facade/bios_interface.c               \
+  facade/facade.c                       \
+  facade/linux_os.c                     \
+  facade/os_interface.c                 \
   php_design_patterns.c,
   $ext_shared,
   )
