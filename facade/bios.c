@@ -15,23 +15,29 @@ ZEND_END_ARG_INFO()
 
 PHP_METHOD(bios, execute)
 {
-    php_printf("bios excute");
+    php_printf("bios excute\n");
 }
 
 PHP_METHOD(bios, launch)
 {
-    php_printf("bios excute");
+    php_printf("bios launch\n");
 }
 
 PHP_METHOD(bios, waitForkeyPress)
 {
-    php_printf("waitForkeyPress");
+    php_printf("waitForkeyPress\n");
+}
+
+PHP_METHOD(bios, powerDown)
+{
+    php_printf("powerDown\n");
 }
 
 static zend_function_entry bios_methods[] = {
     PHP_ME(bios, execute, NULL, ZEND_ACC_PUBLIC)
     PHP_ME(bios, launch, bios_interface_arg_info, ZEND_ACC_PUBLIC)
     PHP_ME(bios, waitForkeyPress, NULL, ZEND_ACC_PUBLIC)
+    PHP_ME(bios, powerDown, NULL, ZEND_ACC_PUBLIC)
     PHP_FE_END
 };
 
@@ -51,7 +57,6 @@ PHP_DESIGN_STARTUP_FUNCTION(bios)
     /* initial class */
     INIT_CLASS_ENTRY(bios_container_ce, "PHPDesign\\Facade\\Bios", bios_methods);
     bios_ce = zend_register_internal_class(&bios_container_ce TSRMLS_CC);
-
     /* implement os_interface */
     zend_class_implements(bios_ce, 1, bios_interface_ce);
     zend_string_release(bios_interface_name);

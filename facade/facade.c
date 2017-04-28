@@ -45,9 +45,9 @@ PHP_METHOD(facade, turnOn)
     /* Get $this->bios */
     bios_object = zend_read_property(facade_ce , getThis(), ZEND_STRL("bios"), 0, 0 TSRMLS_CC);
     /* Execute $this->bios->execute() */
-    call_user_function(CG(function_table), bios_object, &execute_name, return_value, ZEND_NUM_ARGS(), NULL TSRMLS_CC);
+    call_user_function(CG(function_table), bios_object, &execute_name,            return_value, ZEND_NUM_ARGS(), NULL TSRMLS_CC);
     call_user_function(CG(function_table), bios_object, &wait_for_key_press_name, return_value, ZEND_NUM_ARGS(), NULL TSRMLS_CC);
-    call_user_function(CG(function_table), bios_object, &launch_name, return_value, ZEND_NUM_ARGS(), os_object TSRMLS_CC);
+    call_user_function(CG(function_table), bios_object, &launch_name,             return_value, ZEND_NUM_ARGS(), os_object TSRMLS_CC);
 
     zval_dtor(&execute_name);
     zval_dtor(&wait_for_key_press_name);
