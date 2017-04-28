@@ -48,6 +48,7 @@ $linux = new Linux();
 
 $facade = new Facade($linux, $bios);
 
-var_dump($facade->turnOn());
-
+$facade->turnOn();
+$facade->os->getName();
+$facade->turnOff();
 ?>

@@ -89,9 +89,9 @@ PHP_DESIGN_STARTUP_FUNCTION(facade)
     facade_ce = zend_register_internal_class(&facade_container_ce TSRMLS_CC);
 
     /* Declare $os */
-    zend_declare_property_null(facade_ce, ZEND_STRL("os"), ZEND_ACC_PRIVATE);
+    zend_declare_property_null(facade_ce, ZEND_STRL("os"), ZEND_ACC_PUBLIC);
     /* Declare $bios */
-    zend_declare_property_null(facade_ce, ZEND_STRL("bios"), ZEND_ACC_PRIVATE);
+    zend_declare_property_null(facade_ce, ZEND_STRL("bios"), ZEND_ACC_PUBLIC);
 
     return SUCCESS;
 }
