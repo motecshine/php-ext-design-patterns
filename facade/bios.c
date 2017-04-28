@@ -9,6 +9,10 @@
 #include "facade/bios.h"
 #include "facade/bios_interface.h"
 
+ZEND_BEGIN_ARG_INFO(bios_interface_arg_info, 0)
+    ZEND_ARG_INFO(0, os)
+ZEND_END_ARG_INFO()
+
 PHP_METHOD(bios, execute)
 {
     php_printf("bios excute");
@@ -26,7 +30,7 @@ PHP_METHOD(bios, waitForkeyPress)
 
 static zend_function_entry bios_methods[] = {
     PHP_ME(bios, execute, NULL, ZEND_ACC_PUBLIC)
-    PHP_ME(bios, launch, NULL, ZEND_ACC_PUBLIC)
+    PHP_ME(bios, launch, bios_interface_arg_info, ZEND_ACC_PUBLIC)
     PHP_ME(bios, waitForkeyPress, NULL, ZEND_ACC_PUBLIC)
     PHP_FE_END
 };
@@ -46,7 +50,7 @@ PHP_DESIGN_STARTUP_FUNCTION(bios)
 
     /* initial class */
     INIT_CLASS_ENTRY(bios_container_ce, "PHPDesign\\Facade\\Bios", bios_methods);
-    bios_ce = zend_register_class_internal(&bios_container_ce TSRMLS_CC);
+    bios_ce = zend_register_internal_class(&bios_container_ce TSRMLS_CC);
 
     /* implement os_interface */
     zend_class_implements(bios_ce, 1, bios_interface_ce);

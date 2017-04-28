@@ -23,7 +23,7 @@ static zend_function_entry bios_interface_methods[] = {
 PHP_DESIGN_STARTUP_FUNCTION(bios_interface)
 {
     zend_class_entry bios_interface_container_ce;
-    INIT_CLASS_ENTRY(bios_interface_container_ce TSRMLS_CC, "PHPDesign\\BiosInterface", bios_interface_methods);
+    INIT_CLASS_ENTRY(bios_interface_container_ce TSRMLS_CC, "PHPDesign\\Facade\\BiosInterface", bios_interface_methods);
     zend_register_internal_interface(&bios_interface_container_ce TSRMLS_CC);
     return SUCCESS;
 }

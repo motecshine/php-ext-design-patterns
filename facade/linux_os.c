@@ -42,7 +42,7 @@ PHP_DESIGN_STARTUP_FUNCTION(linux_os)
 
     /* initial class */
     INIT_CLASS_ENTRY(linux_os_container_ce, "PHPDesign\\Facade\\Linux", linux_os_methods);
-    linux_os_ce = zend_register_class_internal(&linux_os_container_ce TSRMLS_CC);
+    linux_os_ce = zend_register_internal_class(&linux_os_container_ce TSRMLS_CC);
 
     /* implement os_interface */
     zend_class_implements(linux_os_ce, 1, os_interface_ce);
