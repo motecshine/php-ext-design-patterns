@@ -43,12 +43,11 @@ $service->get();
 $service = new HelloWorldService(new PlainTextFormatter);
 $service->get();
 
+/* Facade Patterns */
 $bios = new Bios();
 $linux = new Linux();
-
 $facade = new Facade($linux, $bios);
-
 $facade->turnOn();
-$facade->os->getName();
+echo $facade->os->getName() . "\n";
 $facade->turnOff();
 ?>

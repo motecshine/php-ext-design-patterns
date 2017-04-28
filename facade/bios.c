@@ -15,7 +15,7 @@ ZEND_END_ARG_INFO()
 
 PHP_METHOD(bios, execute)
 {
-    php_printf("bios excute\n");
+    php_printf("bios execute\n");
 }
 
 PHP_METHOD(bios, launch)
