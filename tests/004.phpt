@@ -7,7 +7,7 @@ Check for php_design_patterns presence
     use PHPDesign\Facade\Facade;
     use PHPDesign\Facade\Bios;
     use PHPDesign\Facade\Linux;
-    /* Facade Patterns */
+    /* Facade Patterns =.= */
     $bios = new Bios();
     $linux = new Linux();
     $facade = new Facade($linux, $bios);
