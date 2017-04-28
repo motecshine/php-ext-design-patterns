@@ -51,12 +51,6 @@ PHP_MINIT_FUNCTION(php_design_patterns)
 	PHP_DESIGN_STARTUP(hello_world_service);
 	PHP_DESIGN_STARTUP(html_formatter);
 	PHP_DESIGN_STARTUP(plain_text_formatter);
-	/* Facade  */
-	PHP_DESIGN_STARTUP(os_interface);
-	PHP_DESIGN_STARTUP(bios_interface);
-	PHP_DESIGN_STARTUP(bios);
-	PHP_DESIGN_STARTUP(linux_os);
-	PHP_DESIGN_STARTUP(facade);
 	return SUCCESS;
 }
 /* }}} */
