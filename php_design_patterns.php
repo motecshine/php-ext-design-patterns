@@ -12,9 +12,6 @@ use PHPDesign\EbookAdapter;
 use PHPDesign\HelloWorldService;
 use PHPDesign\PlainTextFormatter;
 use PHPDesign\HtmlFormatter;
-use PHPDesign\Facade\Facade;
-use PHPDesign\Facade\Bios;
-use PHPDesign\Facade\Linux;
 
 $macObj = new MacFactory();
 $macObj->CreateButton();
@@ -42,12 +39,4 @@ $service = new HelloWorldService(new HtmlFormatter);
 $service->get();
 $service = new HelloWorldService(new PlainTextFormatter);
 $service->get();
-
-/* Facade Patterns */
-$bios = new Bios();
-$linux = new Linux();
-$facade = new Facade($linux, $bios);
-$facade->turnOn();
-echo $facade->os->getName() . "\n";
-$facade->turnOff();
 ?>
