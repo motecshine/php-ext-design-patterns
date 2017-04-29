@@ -15,12 +15,18 @@ ZEND_END_ARG_INFO()
 
 PHP_METHOD(database_connection, __construct)
 {
-
+    zval *config;
+    ZEND_PARSE_PARAMETERS_START(1, 1)
+        Z_PARAM_ZVAL(config)
+    ZEND_PARSE_PARAMETERS_END();
+    database_connection_ce = Z_OBJCE_P(getThis());
+    /* update $configuration */
+    zend_update_property(database_connection_ce, getThis(), ZEND_STRL("configuration"), config TSRMLS_CC);
 }
 
 PHP_METHOD(database_connection, getDsn)
 {
-
+    php_printf("%s:%s@:%s:%d");
 }
 
 zend_function_entry database_connection_methods[] = {
