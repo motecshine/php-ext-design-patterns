@@ -15,6 +15,8 @@ use PHPDesign\HtmlFormatter;
 use PHPDesign\Facade\Facade;
 use PHPDesign\Facade\Bios;
 use PHPDesign\Facade\Linux;
+use PHPDesign\DI\DatabaseConfiguration;
+use PHPDesign\DI\DatabaseConnection;
 
 $macObj = new MacFactory();
 $macObj->CreateButton();
@@ -50,4 +52,9 @@ $facade = new Facade($linux, $bios);
 $facade->turnOn();
 echo $facade->os->getName() . "\n";
 $facade->turnOff();
+echo "\n";
+
+$configuration = new DatabaseConfiguration("127.9.0.1", "3306", "root", "1234");
+$connection = new DatabaseConnection($configuration);
+$connection->getDsn();
 ?>
