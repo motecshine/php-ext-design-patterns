@@ -18,27 +18,48 @@ ZEND_END_ARG_INFO()
 
 PHP_METHOD(database_configuration, __construct)
 {
-
+    zval * host, * port, * username, * password;
+    ZEND_PARSE_PARAMETERS_START(4, 4)
+        Z_PARAM_ZVAL(host)
+        Z_PARAM_ZVAL(port)
+        Z_PARAM_ZVAL(username)
+        Z_PARAM_ZVAL(password)
+    ZEND_PARSE_PARAMETERS_END();
+    zend_update_property(database_configuration_ce, getThis(), ZEND_STRL("host"), host);
+    zend_update_property(database_configuration_ce, getThis(), ZEND_STRL("port"), port);
+    zend_update_property(database_configuration_ce, getThis(), ZEND_STRL("username"), username);
+    zend_update_property(database_configuration_ce, getThis(), ZEND_STRL("password"), password);
 }
 
 PHP_METHOD(database_configuration, getHost)
 {
-
+    zval * host;
+    host = zend_read_property(Z_OBJCE_P(getThis()), getThis(), ZEND_STRL("host"), 0, 0 TSRMLS_CC);
+    RETURN_ZVAL(host, 0, 1);
 }
 
 PHP_METHOD(database_configuration, getPort)
 {
 
+    zval * port;
+    port = zend_read_property(Z_OBJCE_P(getThis()), getThis(), ZEND_STRL("port"), 0, 0 TSRMLS_CC);
+    RETURN_ZVAL(port, 0, 1);
 }
 
 PHP_METHOD(database_configuration, getUsername)
 {
 
+    zval * username;
+    username = zend_read_property(Z_OBJCE_P(getThis()), getThis(), ZEND_STRL("username"), 0, 0 TSRMLS_CC);
+    RETURN_ZVAL(username, 0, 1);
 }
 
 PHP_METHOD(database_configuration, getPassword)
 {
 
+    zval * password;
+    password = zend_read_property(Z_OBJCE_P(getThis()), getThis(), ZEND_STRL("password"), 0, 0 TSRMLS_CC);
+    RETURN_ZVAL(password, 0, 1);
 }
 
 zend_function_entry database_configuration_methods[] = {

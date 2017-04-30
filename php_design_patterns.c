@@ -57,6 +57,10 @@ PHP_MINIT_FUNCTION(php_design_patterns)
 	PHP_DESIGN_STARTUP(bios);
 	PHP_DESIGN_STARTUP(linux_os);
 	PHP_DESIGN_STARTUP(facade);
+
+	/* Dependency Injection */
+	PHP_DESIGN_STARTUP(database_configuration);
+	PHP_DESIGN_STARTUP(database_connection);
 	return SUCCESS;
 }
 /* }}} */

@@ -26,7 +26,48 @@ PHP_METHOD(database_connection, __construct)
 
 PHP_METHOD(database_connection, getDsn)
 {
-    php_printf("%s:%s@:%s:%d");
+    zval *object;
+    zval getUsername, getPassword, getHost, getPort;
+    zval username, password, host, port;
+    /* set function name */
+    ZVAL_STRING(&getUsername, "getUsername");
+    ZVAL_STRING(&getPassword, "getPassword");
+    ZVAL_STRING(&getHost, "getHost");
+    ZVAL_STRING(&getPort, "getPort");
+    /* get class ce */
+    database_connection_ce = Z_OBJCE_P(getThis());
+
+    /* get class object */
+    object = zend_read_property(database_connection_ce, getThis(), ZEND_STRL("configuration"), 0, 0 TSRMLS_CC);
+
+    call_user_function(CG(function_table), object, &getUsername, return_value, ZEND_NUM_ARGS(), NULL TSRMLS_CC);
+    ZVAL_STRING(&username, Z_STRVAL_P(return_value));
+
+    call_user_function(CG(function_table), object, &getPassword, return_value, ZEND_NUM_ARGS(), NULL TSRMLS_CC);
+    ZVAL_STRING(&password, Z_STRVAL_P(return_value));
+
+    call_user_function(CG(function_table), object, &getHost, return_value, ZEND_NUM_ARGS(), NULL TSRMLS_CC);
+    ZVAL_STRING(&host, Z_STRVAL_P(return_value));
+
+    call_user_function(CG(function_table), object, &getPort, return_value, ZEND_NUM_ARGS(), NULL TSRMLS_CC);
+    ZVAL_STRING(&port, Z_STRVAL_P(return_value));
+
+    php_printf(
+        "%s:%s@:%s:%s\n",
+        Z_STRVAL(username),
+        Z_STRVAL(password),
+        Z_STRVAL(host),
+        Z_STRVAL(port)
+    );
+    zval_dtor(&getPassword);
+    zval_dtor(&getUsername);
+    zval_dtor(&getPort);
+    zval_dtor(&getHost);
+    zval_dtor(&username);
+    zval_dtor(&password);
+    zval_dtor(&host);
+    zval_dtor(&port);
+    zval_ptr_dtor(return_value);
 }
 
 zend_function_entry database_connection_methods[] = {
