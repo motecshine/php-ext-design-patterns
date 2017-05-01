@@ -61,9 +61,9 @@ if test "$PHP_PHP_DESIGN_PATTERNS" != "no"; then
 
   PHP_NEW_EXTENSION(
   php_design_patterns,
-  abstract_factory/mac_factory.c                \
-  abstract_factory/win_factory.c                \
-  abstract_factory/abstract_factory.c           \
+  abstractFactory/mac_factory.c                \
+  abstractFactory/win_factory.c                \
+  abstractFactory/abstract_factory.c           \
   adapter/book.c                                \
   adapter/book_interface.c                      \
   adapter/ebook_adapter.c                       \
