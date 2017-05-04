@@ -81,6 +81,12 @@ if test "$PHP_PHP_DESIGN_PATTERNS" != "no"; then
   facade/os_interface.c                         \
   dependencyInjection/database_configuration.c  \
   dependencyInjection/database_connection.c     \
+  commander/add_message_date_command.c          \
+  commander/command_interface.c                 \
+  commander/hello_command.c                     \
+  commander/invoker.c                           \
+  commander/receiver.c                          \
+  commander/undoable_command_interface.c        \
   php_design_patterns.c,
   $ext_shared,
   )

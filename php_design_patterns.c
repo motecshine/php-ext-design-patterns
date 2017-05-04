@@ -61,6 +61,14 @@ PHP_MINIT_FUNCTION(php_design_patterns)
 	/* Dependency Injection */
 	PHP_DESIGN_STARTUP(database_configuration);
 	PHP_DESIGN_STARTUP(database_connection);
+
+	/* Commander */
+	PHP_DESIGN_STARTUP(command_interface);
+	PHP_DESIGN_STARTUP(ud_command_interface);
+	PHP_DESIGN_STARTUP(receiver);
+	PHP_DESIGN_STARTUP(add_msg_date_cmd);
+	PHP_DESIGN_STARTUP(invoker);
+	PHP_DESIGN_STARTUP(hello_command);
 	return SUCCESS;
 }
 /* }}} */

@@ -17,6 +17,9 @@ use PHPDesign\Facade\Bios;
 use PHPDesign\Facade\Linux;
 use PHPDesign\DI\DatabaseConfiguration;
 use PHPDesign\DI\DatabaseConnection;
+use PHPDesign\Commander\HelloCommand;
+use PHPDesign\Commander\Invoker;
+use PHPDesign\Commander\Receiver;
 
 $macObj = new MacFactory();
 $macObj->CreateButton();
@@ -57,4 +60,16 @@ echo "\n";
 $configuration = new DatabaseConfiguration("127.9.0.1", "3306", "root", "1234");
 $connection = new DatabaseConnection($configuration);
 $connection->getDsn();
+
+
+$invoker = new Invoker();
+$receiver = new Receiver();
+var_dump(new HelloCommand($receiver));
+$invoker->setCommand(new HelloCommand($receiver));
+$invoker->run();
+$messageDateCommand = new AddMessageDateCommand($receiver);
+$messageDateCommand->execute();
+$invoker->run();
+$messageDateCommand->undo();
+$invoker->run();
 ?>

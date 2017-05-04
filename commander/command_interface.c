@@ -10,8 +10,8 @@
 #include "commander/command_interface.h"
 
 zend_function_entry command_interface_methods[] = {
-    PHP_ABSTRACT_ME(command_interface, execute, NULL, ZEND_ACC_PUBLIC);
-    PHP_FE_END;
+    PHP_ABSTRACT_ME(command_interface, execute, NULL)
+    PHP_FE_END
 };
 
 PHP_DESIGN_STARTUP_FUNCTION(command_interface)
