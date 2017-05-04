@@ -21,7 +21,8 @@ PHP_METHOD(hello_command, __construct)
         Z_PARAM_ZVAL(output)
     ZEND_PARSE_PARAMETERS_END();
     /* update cmd */
-    zend_update_property(Z_OBJCE_P(getThis()), getThis(), ZEND_STRL("output"), output);
+    hello_command_ce = Z_OBJCE_P(getThis());
+    zend_update_property(hello_command_ce, getThis(), ZEND_STRL("output"), output);
 }
 
 PHP_METHOD(hello_command, execute)

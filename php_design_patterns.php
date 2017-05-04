@@ -20,7 +20,7 @@ use PHPDesign\DI\DatabaseConnection;
 use PHPDesign\Commander\HelloCommand;
 use PHPDesign\Commander\Invoker;
 use PHPDesign\Commander\Receiver;
-
+use PHPDesign\Commander\AddMessageDateCommand;
 $macObj = new MacFactory();
 $macObj->CreateButton();
 $winObj = new WinFactory();
@@ -64,12 +64,11 @@ $connection->getDsn();
 
 $invoker = new Invoker();
 $receiver = new Receiver();
-var_dump(new HelloCommand($receiver));
-$invoker->setCommand(new HelloCommand($receiver));
-$invoker->run();
+//$invoker->setCommand(new HelloCommand($receiver));
+//$invoker->run();
 $messageDateCommand = new AddMessageDateCommand($receiver);
 $messageDateCommand->execute();
-$invoker->run();
+//$invoker->run();
 $messageDateCommand->undo();
-$invoker->run();
+//$invoker->run();
 ?>
