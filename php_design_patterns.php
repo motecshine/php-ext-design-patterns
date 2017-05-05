@@ -64,11 +64,13 @@ $connection->getDsn();
 
 $invoker = new Invoker();
 $receiver = new Receiver();
-//$invoker->setCommand(new HelloCommand($receiver));
-//$invoker->run();
+$receiver->enableDate();
+$invoker->setCommand(new HelloCommand($receiver));
+$invoker->run();
 $messageDateCommand = new AddMessageDateCommand($receiver);
 $messageDateCommand->execute();
-//$invoker->run();
+$invoker->run();
 $messageDateCommand->undo();
-//$invoker->run();
+$invoker->run();
+var_dump($receiver->getOutput());
 ?>

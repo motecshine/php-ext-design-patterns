@@ -21,8 +21,8 @@ PHP_METHOD(add_msg_date_cmd, __construct)
     ZEND_PARSE_PARAMETERS_START(1, 1)
         Z_PARAM_ZVAL(output)
     ZEND_PARSE_PARAMETERS_END();
-
     zend_update_property(Z_OBJCE_P(getThis()), getThis(), ZEND_STRL("output"), output);
+	zval_ptr_dtor(output);
 }
 
 PHP_METHOD(add_msg_date_cmd, execute)

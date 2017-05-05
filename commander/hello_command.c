@@ -30,15 +30,18 @@ PHP_METHOD(hello_command, execute)
 
     zval * object;
     zval function_name;
-    ZVAL_STRING(&function_name, "execute");
+    zval hello_string;
+    ZVAL_STRING(&hello_string, "Hello World ");
+    ZVAL_STRING(&function_name, "write");
     object = zend_read_property(Z_OBJCE_P(getThis()), getThis(), ZEND_STRL("output"), 0, 0 TSRMLS_CC);
     /* execute function */
-    if (call_user_function(CG(function_table), object, &function_name, return_value, ZEND_NUM_ARGS(), NULL TSRMLS_CC) == FAILURE) {
-        php_error_docref(NULL TSRMLS_CC, E_ERROR, "can not execute execute() function");
+    if (call_user_function(CG(function_table), object, &function_name, return_value, 1, &hello_string TSRMLS_CC) == FAILURE) {
+        php_error_docref(NULL TSRMLS_CC, E_ERROR, "can not execute write() function");
         return;
     }
     /* release zval */
     zval_dtor(&function_name);
+    zval_dtor(&hello_string);
     zval_ptr_dtor(return_value);
 }
 
