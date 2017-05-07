@@ -6,7 +6,7 @@
 
 /* include global headers*/
 #include "php_design_patterns.h"
-#include "abstract_factory/abstract_factory.h"
+#include "abstractFactory/abstract_factory.h"
 
 static zend_function_entry abstract_factory_methods[] = {
     PHP_ABSTRACT_ME(abstract_factory, CreateButton, NULL)

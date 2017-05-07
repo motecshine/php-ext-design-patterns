@@ -7,3 +7,5 @@ Adatpter (适配器模式)
 Bridge (桥接模式)
 
 Facade (Facade模式)
+
+Commander (Commander模式)

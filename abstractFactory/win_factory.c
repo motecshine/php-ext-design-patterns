@@ -6,8 +6,8 @@
 
 /* include global headers*/
 #include "php_design_patterns.h"
-#include "abstract_factory/abstract_factory.h"
-#include "abstract_factory/win_factory.h"
+#include "abstractFactory/abstract_factory.h"
+#include "abstractFactory/win_factory.h"
 
 zend_class_entry *win_factory_ce;
 

@@ -6,8 +6,8 @@
 
 /* include global headers*/
 #include "php_design_patterns.h"
-#include "abstract_factory/abstract_factory.h"
-#include "abstract_factory/mac_factory.h"
+#include "abstractFactory/abstract_factory.h"
+#include "abstractFactory/mac_factory.h"
 zend_class_entry *mac_factory_ce;
 
 PHP_METHOD(mac_factory, CreateButton)
