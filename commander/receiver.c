@@ -16,21 +16,26 @@ ZEND_END_ARG_INFO()
 
 PHP_METHOD(receiver, write)
 {
-    zval * enableDate, * output;
+    zval * enableDate;
+    zval output;
+    zval * helloWorld;
     zend_string * string;
-
     ZEND_PARSE_PARAMETERS_START(1, 1)
-        Z_PARAM_STR(string)
+        Z_PARAM_ZVAL(helloWorld)
     ZEND_PARSE_PARAMETERS_END();
-
     /* get $enableDate */
     enableDate = zend_read_property(Z_OBJCE_P(getThis()), getThis(), ZEND_STRL("enableDate"), 0, NULL TSRMLS_CC);
-    output = zend_read_property(Z_OBJCE_P(getThis()), getThis(), ZEND_STRL("output"), 0, NULL TSRMLS_CC);
-    if (Z_TYPE_P(enableDate) == IS_TRUE) {
-        string =  strpprintf(0, "%s %s", ZSTR_VAL(string), "1993-04-01");
+    if (Z_TYPE_P(enableDate) == IS_TRUE && Z_STRVAL_P(helloWorld) != NULL) {
+        string =  strpprintf(0, "%s %s", Z_STRVAL_P(helloWorld), "1993-04-01");
+    } else {
+        string  = strpprintf(0, Z_STRVAL_P(helloWorld));
     }
-    array_init(output);
-    add_index_str(output, 0, string);
+    array_init(&output);
+    add_index_str(&output, 0, string);
+    zend_update_property(Z_OBJCE_P(getThis()), getThis(), ZEND_STRL("output"), &output);
+    zval_ptr_dtor(&output);
+    zval_ptr_dtor(enableDate);
+    zval_ptr_dtor(helloWorld);
     zend_string_release(string);
 }
 
