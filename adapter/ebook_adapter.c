@@ -14,7 +14,7 @@ ZEND_BEGIN_ARG_INFO(ebook_adapter_arg_info, 0)
     ZEND_ARG_INFO(0, ebook_object)
 ZEND_END_ARG_INFO()
 
-extern zend_class_entry *ebook_adapter_ce;
+zend_class_entry *ebook_adapter_ce;
 
 PHP_METHOD(ebook_adapter, __construct)
 {

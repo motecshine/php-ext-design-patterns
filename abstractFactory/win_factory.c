@@ -9,7 +9,7 @@
 #include "abstractFactory/abstract_factory.h"
 #include "abstractFactory/win_factory.h"
 
-extern zend_class_entry *win_factory_ce;
+zend_class_entry *win_factory_ce;
 
 PHP_METHOD(win_factory, CreateButton)
 {

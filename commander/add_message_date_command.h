@@ -1,6 +1,6 @@
 #ifndef ADD_MESSAGE_DATE_COMMAND_H
 #define ADD_MESSAGE_DATE_COMMAND_H
-extern zend_class_entry * add_msg_date_cmd_ce;
+zend_class_entry * add_msg_date_cmd_ce;
 PHP_METHOD(add_msg_date_cmd, __construct);
 PHP_METHOD(add_msg_date_cmd, execute);
 PHP_METHOD(add_msg_date_cmd, undo);
