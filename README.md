@@ -1,5 +1,11 @@
 # php-ext-design-patterns [![Build Status](https://travis-ci.org/motecshine/php-ext-design-patterns.svg?branch=master)](https://travis-ci.org/motecshine/php-ext-design-patterns)
 
+
+## Install
+
+```
+    phpize && ./configure && make && make test && make install
+```
 ## Required
 * PHP > 7.x
 * GCC > 4.8
