@@ -1,6 +1,6 @@
 #ifndef RECEVIER_H
 #define RECEVIER_H
-zend_class_entry * receiver_ce;
+static zend_class_entry * receiver_ce;
 PHP_METHOD(receiver, write);
 PHP_METHOD(receiver, getOutput);
 PHP_METHOD(receiver, enableDate);

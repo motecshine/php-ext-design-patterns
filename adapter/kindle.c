@@ -9,7 +9,7 @@
 #include "adapter/ebook_interface.h"
 #include "adapter/kindle.h"
 
-zend_class_entry *kindle_ce;
+static zend_class_entry *kindle_ce;
 
 PHP_METHOD(kindle, pressNext)
 {

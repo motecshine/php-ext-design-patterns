@@ -1,6 +1,6 @@
 #ifndef FACADE_H
 #define FACADE_H
-zend_class_entry *facade_ce;
+static zend_class_entry *facade_ce;
 PHP_METHOD(facade, __construct);
 PHP_METHOD(facade, turnOn);
 PHP_METHOD(facade, turnOff);

@@ -8,7 +8,7 @@
 #include "php_design_patterns.h"
 #include "adapter/book_interface.h"
 #include "adapter/book.h"
-zend_class_entry *book_ce;
+static zend_class_entry *book_ce;
 
 PHP_METHOD(book, open)
 {
