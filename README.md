@@ -13,6 +13,9 @@ Bridge (桥接模式)
 
 Facade (Facade模式)
 
+DependencyInjection (DI)
+
+Commander (Commander)
 
 ## TODO 
 
