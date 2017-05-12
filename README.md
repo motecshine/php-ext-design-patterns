@@ -18,10 +18,6 @@ DependencyInjection (DI)
 Commander (Commander)
 
 ## TODO 
-    `
-    1. [x] Complete
-    2. []  Uncomplete
-    `
 
 * [x] Support Clang 
 
