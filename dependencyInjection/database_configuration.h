@@ -1,5 +1,5 @@
 #ifndef DATABASE_CONFIGURATION_H
-#define DATABASE_CONFIGURATION_
+#define DATABASE_CONFIGURATION_H
 zend_class_entry * database_configuration_ce;
 PHP_METHOD(database_configuration, __construct);
 PHP_METHOD(database_configuration, getHost);
